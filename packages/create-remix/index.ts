@@ -8,7 +8,7 @@ import execa from "execa";
 import arg from "arg";
 import * as semver from "semver";
 import sortPackageJSON from "sort-package-json";
-import { cli } from "@remix-run/dev";
+import { init } from "@remix-run/dev/cli/commands";
 
 import { version as thisRemixVersion } from "./package.json";
 import { prompt } from "./prompt";
@@ -543,13 +543,10 @@ async function runInitScriptStep(ctx: Context) {
 
   // call out to the remix init command to run the init script
   try {
-    await cli.run(
-      [
-        "init",
-        ctx.cwd,
-        ctx.showInstallOutput ? "--show-install-output" : "",
-      ].filter(Boolean)
-    );
+    await init(ctx.cwd, {
+      deleteScript: true,
+      showInstallOutput: ctx.showInstallOutput,
+    });
   } catch (err: unknown) {
     console.error(`▲  Oh no! Template's remix.init script failed`);
     throw err;
