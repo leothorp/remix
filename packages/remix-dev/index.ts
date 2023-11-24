@@ -3,6 +3,7 @@ import "./modules";
 export type { AppConfig, RemixConfig as ResolvedRemixConfig } from "./config";
 
 export * as cli from "./cli/index";
+export { init as initCommand } from "./cli/commands";
 
 export type { Manifest as AssetsManifest } from "./manifest";
 export { getDependenciesToBundle } from "./dependencies";

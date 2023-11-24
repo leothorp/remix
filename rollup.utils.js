@@ -173,15 +173,17 @@ function getCliConfig({ packageName, version }) {
   let outputDir = getOutputDir(packageName);
   let outputDist = path.join(outputDir, "dist");
   return {
-    external() {
-      return true;
-    },
+    // external() {
+    //   return true;
+    // },
     input: `${sourceDir}/cli.ts`,
     output: {
       banner: createBanner(packageName, version, true),
       dir: outputDist,
       format: "cjs",
     },
+    treeshake: "smallest",
+
     plugins: [
       babel({
         babelHelpers: "bundled",

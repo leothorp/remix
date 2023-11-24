@@ -8,8 +8,8 @@ import execa from "execa";
 import arg from "arg";
 import * as semver from "semver";
 import sortPackageJSON from "sort-package-json";
-import { init } from "@remix-run/dev/cli/commands";
 
+import { initCommand as remixInitCommand } from "@remix-run/dev";
 import { version as thisRemixVersion } from "./package.json";
 import { prompt } from "./prompt";
 import {
@@ -543,7 +543,7 @@ async function runInitScriptStep(ctx: Context) {
 
   // call out to the remix init command to run the init script
   try {
-    await init(ctx.cwd, {
+    remixInitCommand(ctx.cwd, {
       deleteScript: true,
       showInstallOutput: ctx.showInstallOutput,
     });
