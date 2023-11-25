@@ -12,4 +12,4 @@
 //   unstable_loadViteServerBuild,
 // } from "./vite";
 
-export { init } from "./cli/init";
+export { init } from "./init";

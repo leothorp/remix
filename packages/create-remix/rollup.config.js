@@ -28,7 +28,7 @@ module.exports = function rollup() {
         banner: createBanner(packageName, version),
         dir: outputDist,
         format: "cjs",
-        preserveModules: true,
+        // preserveModules: true,
         exports: "named",
       },
       plugins: [

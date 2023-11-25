@@ -3,7 +3,7 @@ import semver from "semver";
 
 import * as colors from "../colors";
 import * as commands from "./commands";
-import * as init from "./init";
+import * as init from "../init";
 
 const helpText = `
 ${colors.logoBlue("R")} ${colors.logoGreen("E")} ${colors.logoYellow(

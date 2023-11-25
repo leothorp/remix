@@ -3,6 +3,7 @@
   "version": "2.3.1",
   "description": "Dev tools and CLI for Remix",
   "homepage": "https://remix.run",
+  "sideEffects": false,
   "bugs": {
     "url": "https://github.com/remix-run/remix/issues"
   },

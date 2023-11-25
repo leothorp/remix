@@ -17,7 +17,7 @@ import { type RemixConfig } from "../config";
 import { loadEnv } from "./env";
 import * as Socket from "./socket";
 import * as HMR from "./hmr";
-import { detectPackageManager } from "../cli/detectPackageManager";
+import { detectPackageManager } from "../detectPackageManager";
 import * as HDR from "./hdr";
 import type { Result } from "../result";
 import { err, ok } from "../result";

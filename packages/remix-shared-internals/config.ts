@@ -10,7 +10,7 @@ import { defineRoutes } from "./config/routes";
 import { ServerMode, isValidServerMode } from "./config/serverModes";
 import { serverBuildVirtualModule } from "./compiler/server/virtualModules";
 import { flatRoutes } from "./config/flat-routes";
-import { detectPackageManager } from "./cli/detectPackageManager";
+import { detectPackageManager } from "./detectPackageManager";
 import { logger } from "./tux";
 
 export interface RemixMdxConfig {

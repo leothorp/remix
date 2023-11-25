@@ -3,11 +3,9 @@ import execa from "execa";
 import fse from "fs-extra";
 import { pathToFileURL } from "node:url";
 
-import * as colors from "../colors";
+import * as colors from "./colors";
 import { detectPackageManager } from "./detectPackageManager";
-import { logger } from "../tux";
-
-// export { init } from "./init";
+import { logger } from "./tux";
 
 export type InitFlags = {
   deleteScript?: boolean;
@@ -90,3 +88,7 @@ export async function init(
   logger.info("");
   logger.info("Template's remix.init script complete");
 }
+
+export const treeshakenUnusedFunction = () => {
+  return 37.37;
+};
