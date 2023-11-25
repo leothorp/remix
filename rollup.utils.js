@@ -53,8 +53,12 @@ function getVersion(packageDir) {
 /**
  * @param {string} id
  */
-function isBareModuleId(id) {
-  return !id.startsWith(".") && !path.isAbsolute(id);
+function isExternalModuleId(id) {
+  return (
+    !id.startsWith(".") &&
+    !path.isAbsolute(id) &&
+    !id.startsWith("@remix-run/shared-internals")
+  );
 }
 
 /**
@@ -141,7 +145,7 @@ function getAdapterConfig(adapterName) {
 
   return {
     external(id) {
-      return isBareModuleId(id);
+      return isExternalModuleId(id);
     },
     input: `${sourceDir}/index.ts`,
     output: {
@@ -228,7 +232,7 @@ module.exports = {
   getAdapterConfig,
   getCliConfig,
   getOutputDir,
-  isBareModuleId,
+  isBareModuleId: isExternalModuleId,
 };
 
 /**

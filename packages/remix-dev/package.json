@@ -75,6 +75,7 @@
   },
   "devDependencies": {
     "@remix-run/serve": "2.3.1",
+    "@remix-run/shared-internals": "*",
     "@types/cacache": "^17.0.0",
     "@types/cross-spawn": "^6.0.2",
     "@types/gunzip-maybe": "^1.4.0",

@@ -1,11 +1,9 @@
 import * as path from "node:path";
-import execa from "execa";
 import fse from "fs-extra";
 import getPort, { makeRange } from "get-port";
 import prettyMs from "pretty-ms";
 import PackageJson from "@npmcli/package-json";
 import pc from "picocolors";
-import { pathToFileURL } from "node:url";
 
 import * as colors from "../colors";
 import * as compiler from "../compiler";
@@ -14,93 +12,12 @@ import * as devServer_unstable from "../devServer_unstable";
 import type { RemixConfig } from "../config";
 import { readConfig } from "../config";
 import { formatRoutes, RoutesFormat, isRoutesFormat } from "../config/format";
-import { detectPackageManager } from "./detectPackageManager";
 import { transpile as convertFileToJS } from "./useJavascript";
 import type { Options } from "../compiler/options";
 import { createFileWatchCache } from "../compiler/fileWatchCache";
 import { logger } from "../tux";
 
-type InitFlags = {
-  deleteScript?: boolean;
-  showInstallOutput?: boolean;
-};
-
-async function importEsmOrCjsModule(modulePath: string) {
-  try {
-    // Attempt ESM dynamic import using pathToFileURL to support absolute paths on Windows
-    return await import(pathToFileURL(modulePath).href);
-  } catch (esmError) {
-    try {
-      // Fall back to CommonJS require
-      return require(modulePath);
-    } catch (cjsError) {
-      throw new Error(
-        "Unable to import remix.init module.\n" +
-          `ESM error: ${esmError}\n` +
-          `CJS error: ${cjsError}`
-      );
-    }
-  }
-}
-
-export async function init(
-  projectDir: string,
-  { deleteScript = true, showInstallOutput = false }: Required<InitFlags>
-) {
-  let initScriptDir = path.join(projectDir, "remix.init");
-  let initScriptFilePath = path.resolve(initScriptDir, "index.js");
-
-  if (!(await fse.pathExists(initScriptFilePath))) {
-    return;
-  }
-
-  let initPackageJson = path.resolve(initScriptDir, "package.json");
-  let packageManager = detectPackageManager() ?? "npm";
-
-  if (await fse.pathExists(initPackageJson)) {
-    try {
-      await execa(packageManager, [`install`], {
-        cwd: initScriptDir,
-        stdio: showInstallOutput ? "inherit" : "ignore",
-      });
-    } catch (err) {
-      logger.error(
-        "Oh no! Failed to install dependencies for template init script."
-      );
-      throw err;
-    }
-  }
-
-  logger.info("");
-  logger.info("Running template's remix.init script...\n");
-
-  let importedInitModule = await importEsmOrCjsModule(initScriptFilePath);
-  let initFn =
-    typeof importedInitModule === "function"
-      ? importedInitModule
-      : importedInitModule.default;
-
-  if (typeof initFn !== "function") {
-    throw new Error("remix.init/index.js must export an init function.");
-  }
-  try {
-    await initFn({ packageManager, rootDirectory: projectDir });
-
-    if (deleteScript) {
-      await fse.remove(initScriptDir);
-    }
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      error.message = `${colors.error(
-        "▲  Oh no! Template's remix.init script failed"
-      )}\n\n${error.message}`;
-    }
-    throw error;
-  }
-
-  logger.info("");
-  logger.info("Template's remix.init script complete");
-}
+export { init } from "@remix-run/shared-internals";
 
 /**
  * Keep the function around in v2 so that users with `remix setup` in a script

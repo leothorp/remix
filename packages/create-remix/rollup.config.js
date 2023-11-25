@@ -21,7 +21,7 @@ module.exports = function rollup() {
   return [
     {
       external(id) {
-        return isBareModuleId(id) && id !== "@remix-run/shared-internals";
+        return isBareModuleId(id);
       },
       input: `${sourceDir}/index.ts`,
       output: {
