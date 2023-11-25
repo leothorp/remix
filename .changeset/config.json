@@ -19,7 +19,8 @@
       "@remix-run/react",
       "@remix-run/serve",
       "@remix-run/server-runtime",
-      "@remix-run/testing"
+      "@remix-run/testing",
+      "@remix-run/shared-internals"
     ]
   ],
   "linked": [],

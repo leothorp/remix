@@ -6,7 +6,6 @@
     "target": "ES2022",
     "module": "ES2022",
     "composite": true,
-
     "moduleResolution": "Bundler",
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,

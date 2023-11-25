@@ -29,6 +29,7 @@ module.exports = function rollup() {
         dir: outputDist,
         format: "cjs",
         preserveModules: true,
+        // preserveModulesRoot: "packages",
         exports: "named",
       },
       plugins: [

@@ -86,6 +86,6 @@ export async function init(
   logger.info("Template's remix.init script complete");
 }
 
-export const treeshakenUnusedFunction = () => {
+export const unusedFunctionToTreeshake = () => {
   return 37.37;
 };
