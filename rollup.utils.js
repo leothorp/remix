@@ -50,14 +50,16 @@ function getVersion(packageDir) {
   return require(`./${packageDir}/package.json`).version;
 }
 
+// specify dependency import prefixes we want rollup to include in the output
+const internalDependencyPrefixes = ["@remix-run/shared-internals"];
 /**
  * @param {string} id
  */
-function isExternalModuleId(id) {
+function isBareModuleId(id) {
   return (
     !id.startsWith(".") &&
     !path.isAbsolute(id) &&
-    !id.startsWith("@remix-run/shared-internals")
+    !internalDependencyPrefixes.some((prefix) => id.startsWith(prefix))
   );
 }
 
@@ -145,7 +147,7 @@ function getAdapterConfig(adapterName) {
 
   return {
     external(id) {
-      return isExternalModuleId(id);
+      return isBareModuleId(id);
     },
     input: `${sourceDir}/index.ts`,
     output: {
@@ -232,7 +234,7 @@ module.exports = {
   getAdapterConfig,
   getCliConfig,
   getOutputDir,
-  isBareModuleId: isExternalModuleId,
+  isBareModuleId,
 };
 
 /**
