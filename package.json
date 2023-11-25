@@ -19,7 +19,8 @@
     "packages/remix-react",
     "packages/remix-serve",
     "packages/remix-server-runtime",
-    "packages/remix-testing"
+    "packages/remix-testing",
+    "packages/remix-shared-internals"
   ],
   "scripts": {
     "bug-report-test": "yarn test:integration bug-report --project chromium",

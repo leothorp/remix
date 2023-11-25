@@ -8,8 +8,8 @@ import execa from "execa";
 import arg from "arg";
 import * as semver from "semver";
 import sortPackageJSON from "sort-package-json";
-import { cli } from "@remix-run/dev";
-
+// import { cli } from "@remix-run/dev";
+import {init} from "@remix-run/shared-internals"
 import { version as thisRemixVersion } from "./package.json";
 import { prompt } from "./prompt";
 import {
