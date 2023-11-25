@@ -3,6 +3,7 @@ const json = require("@rollup/plugin-json").default;
 const babel = require("@rollup/plugin-babel").default;
 const nodeResolve = require("@rollup/plugin-node-resolve").default;
 const copy = require("rollup-plugin-copy");
+const { visualizer } = require("rollup-plugin-visualizer");
 
 const {
   createBanner,
@@ -57,6 +58,7 @@ module.exports = function rollup() {
             };
           },
         },
+        visualizer({ open: true }),
       ],
     },
     getCliConfig({ packageName, version }),

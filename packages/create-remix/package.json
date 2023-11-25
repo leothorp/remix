@@ -33,7 +33,6 @@
     "tar-fs": "^2.1.1"
   },
   "devDependencies": {
-    "@remix-run/dev": "*",
     "@types/gunzip-maybe": "^1.4.0",
     "@types/node-fetch": "^2.5.7",
     "@types/recursive-readdir": "^2.2.1",
@@ -42,6 +41,7 @@
     "esbuild-register": "^3.3.2",
     "fs-extra": "^10.0.0",
     "msw": "^1.2.3",
+    "rollup-plugin-visualizer": "^5.9.2",
     "tiny-invariant": "^1.2.0"
   },
   "engines": {

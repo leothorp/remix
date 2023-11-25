@@ -8,7 +8,9 @@ import execa from "execa";
 import arg from "arg";
 import * as semver from "semver";
 import sortPackageJSON from "sort-package-json";
-import { cli } from "@remix-run/dev";
+// TODO(lt): vvv revert
+// import { cli } from "@remix-run/dev";
+const cli = { run: () => {} };
 
 import { version as thisRemixVersion } from "./package.json";
 import { prompt } from "./prompt";
