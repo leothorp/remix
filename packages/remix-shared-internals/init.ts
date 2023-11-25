@@ -3,7 +3,6 @@ import execa from "execa";
 import fse from "fs-extra";
 import { pathToFileURL } from "node:url";
 
-import * as colors from "./colors";
 import { detectPackageManager } from "./detectPackageManager";
 import { logger } from "./tux";
 
@@ -78,9 +77,7 @@ export async function init(
     }
   } catch (error: unknown) {
     if (error instanceof Error) {
-      error.message = `${colors.error(
-        "▲  Oh no! Template's remix.init script failed"
-      )}\n\n${error.message}`;
+      error.message = `▲  Oh no! Template's remix.init script failed\n\n${error.message}`;
     }
     throw error;
   }
