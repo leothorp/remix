@@ -1,4 +1,4 @@
-import * as path from "node:path";
+import { join, resolve } from "node:path";
 import execa from "execa";
 import fse from "fs-extra";
 import { pathToFileURL } from "node:url";
@@ -33,14 +33,14 @@ export async function init(
   projectDir: string,
   { deleteScript = true, showInstallOutput = false }: Required<InitFlags>
 ) {
-  let initScriptDir = path.join(projectDir, "remix.init");
-  let initScriptFilePath = path.resolve(initScriptDir, "index.js");
+  let initScriptDir = join(projectDir, "remix.init");
+  let initScriptFilePath = resolve(initScriptDir, "index.js");
 
   if (!(await fse.pathExists(initScriptFilePath))) {
     return;
   }
 
-  let initPackageJson = path.resolve(initScriptDir, "package.json");
+  let initPackageJson = resolve(initScriptDir, "package.json");
   let packageManager = detectPackageManager() ?? "npm";
 
   if (await fse.pathExists(initPackageJson)) {
