@@ -5,7 +5,7 @@ import { pathToFileURL } from "node:url";
 
 import { detectPackageManager } from "./detectPackageManager";
 
-// TODO(lt): vvv if proceeding with this, would need to bring over the actual logging utils/packages used currently
+// TODO(lt): if proceeding with this, would need to bring over the actual logging utils/packages used currently
 const logger = console;
 
 export type InitFlags = {
