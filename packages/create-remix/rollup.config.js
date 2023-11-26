@@ -29,7 +29,9 @@ module.exports = function rollup() {
         dir: outputDist,
         format: "cjs",
         preserveModules: true,
-        // preserveModulesRoot: "packages",
+        // used to undo the extra 'create-remix' directory in dist,
+        // and keep compatibility with all references elsewhere to contents of dist/
+        preserveModulesRoot: __dirname,
         exports: "named",
       },
       plugins: [
