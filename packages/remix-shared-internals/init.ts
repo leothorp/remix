@@ -13,7 +13,7 @@ export type InitFlags = {
   showInstallOutput?: boolean;
 };
 
-export async function importEsmOrCjsModule(modulePath: string) {
+async function importEsmOrCjsModule(modulePath: string) {
   try {
     // Attempt ESM dynamic import using pathToFileURL to support absolute paths on Windows
     return await import(pathToFileURL(modulePath).href);
