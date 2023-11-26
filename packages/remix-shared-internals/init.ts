@@ -4,7 +4,9 @@ import fse from "fs-extra";
 import { pathToFileURL } from "node:url";
 
 import { detectPackageManager } from "./detectPackageManager";
-import { logger } from "./tux";
+
+// TODO(lt): vvv if proceeding with this, would need to bring over the actual logging utils/packages used currently
+const logger = console;
 
 export type InitFlags = {
   deleteScript?: boolean;
